@@ -3,4 +3,8 @@
     <string name="welcome">Welcome</string>
     <string name="user_thought">User Thought</string>
     <string name="ex_thought">Look at this user twit</string>
+    <string name="home_welcom">Welcome to Aaida!</string>
+    <string name="be_hero">With Aaida you can be a hero for them.</string>
+    <string name="help_each_other">Help Each Other</string>
+    <string name="home_banner">home banner</string>
 </resources>
