@@ -100,7 +100,7 @@
                     android:id="@+id/iv_profile"
                     android:layout_width="45dp"
                     android:layout_height="45dp"
-                    android:src="@color/white"
+                    android:src="@drawable/pic_list"
                     android:scaleType="centerCrop"/>
 
                 <TextView
@@ -109,7 +109,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="8dp"
                     android:layout_toRightOf="@id/iv_profile"
-                    android:text="Debtya Vanni"
+                    tools:text="Debtya Vanni"
                     android:textColor="@color/white"
                     android:textSize="16sp"
                     android:textStyle="bold" />
@@ -118,7 +118,7 @@
                     android:id="@+id/tv_username"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text=".@debbbb"
+                    tools:text=".@debbbb"
                     android:textColor="@color/white"
                     android:textSize="14sp"
                     android:layout_marginLeft="8dp"
@@ -129,7 +129,7 @@
                     android:id="@+id/tv_twit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitati"
+                    tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitati"
                     android:textColor="@color/white"
                     android:textSize="14sp"
                     android:fontFamily="@font/quicksand_medium"
