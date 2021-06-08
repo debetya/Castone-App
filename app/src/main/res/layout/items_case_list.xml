@@ -7,10 +7,11 @@
     android:layout_height="wrap_content"
     android:background="@drawable/container_linear"
     android:layout_marginHorizontal="16dp"
-    android:layout_marginTop="12dp"
+    android:layout_marginTop="8dp"
+    android:layout_marginBottom="4dp"
     android:paddingVertical="8dp"
     android:paddingHorizontal="8dp"
-    android:elevation="4dp">
+    android:elevation="2dp">
 
     <com.makeramen.roundedimageview.RoundedImageView
         android:id="@+id/img_pic"
@@ -23,24 +24,13 @@
         app:layout_constraintStart_toStartOf="parent"/>
 
     <TextView
-        android:id="@+id/tv_tag"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:text="@string/tag"
-        android:textSize="16sp"
-        android:textColor="#636363"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toEndOf="@id/img_pic"
-        app:layout_constraintBottom_toBottomOf="parent"/>
-
-    <TextView
         android:id="@+id/tv_username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="#636363"
-        android:textSize="16sp"
-        app:layout_constraintStart_toEndOf="@id/tv_tag"
+        android:textSize="15sp"
+        android:layout_marginLeft="10dp"
+        app:layout_constraintStart_toEndOf="@id/img_pic"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         tools:text="LoremIpsum123" />

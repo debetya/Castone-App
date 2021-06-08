@@ -1,30 +1,29 @@
 package com.example.aaidapsycholog.repo
 
 
+import android.util.Log
 import com.example.aaidapsycholog.BuildConfig
 import com.example.aaidapsycholog.Resource
 import com.example.aaidapsycholog.data.api.ApiService
-import com.example.aaidapsycholog.data.response.TwitterUserResponse
-import com.example.aaidapsycholog.data.response.UserCaseResponse
+import com.example.aaidapsycholog.data.response.*
 import com.example.aaidapsycholog.utils.Constant
 import javax.inject.Inject
 
-class MainRepository @Inject constructor(private val apiService: ApiService): Repository {
+class MainRepository @Inject constructor(private val apiService: ApiService) {
 
-
-    override suspend fun getCaseUser(): Resource<UserCaseResponse> {
+    suspend fun getCaseUser(): Resource<ArrayList<UserCaseResponseItem>> {
         apiService.getUserCase().let { response ->
             if (response.isSuccessful){
-                response.body()?.let { case ->
-                    return Resource.Success(case)
+                response.body()?.let { test ->
+                    return Resource.Success(test)
                 }
             }
             return Resource.Error(response.message())
         }
     }
 
-    override suspend fun getUserTwitter(id: Int): Resource<TwitterUserResponse> {
-        apiService.getTwitterUser(Constant.BASE_URL_TWITTER+"=$id", BuildConfig.BEARER_TOKEN,)
+    suspend fun getUserTwitter(id: String): Resource<TwitterUserResponse> {
+        apiService.getTwitterUser("Bearer ${BuildConfig.BEARER_TOKEN}", "${Constant.BASE_URL_TWITTER}users/show.json?user_id=$id")
             .let { response ->
                 if (response.isSuccessful){
                     response.body()?.let { name ->
@@ -35,5 +34,16 @@ class MainRepository @Inject constructor(private val apiService: ApiService): Re
             }
     }
 
+    suspend fun getStatusTwitter(id: String): Resource<UserStatusResponse> {
+        apiService.getStatusUser("Bearer ${BuildConfig.BEARER_TOKEN}", "${Constant.BASE_URL_TWITTER}statuses/show.json?id=$id")
+            .let { response ->
+                if (response.isSuccessful){
+                    response.body()?.let { text ->
+                        return Resource.Success(text)
+                    }
+                }
+                return Resource.Error(response.message())
+            }
+    }
 
 }

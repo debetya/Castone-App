@@ -2,7 +2,7 @@ package com.example.aaidapsycholog.di
 
 import com.example.aaidapsycholog.data.api.ApiService
 import com.example.aaidapsycholog.repo.MainRepository
-import com.example.aaidapsycholog.repo.Repository
+
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -17,9 +17,5 @@ object ServiceModule {
     @Singleton
     @Provides
     fun provideAaidaService(retrofit: Retrofit) = retrofit.create(ApiService::class.java)
-
-    @Singleton
-    @Provides
-    fun provideMainRepository(api: ApiService) = MainRepository(api) as Repository
 
 }

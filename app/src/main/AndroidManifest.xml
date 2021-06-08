@@ -11,7 +11,8 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AaidaPsycholog">
+        android:theme="@style/Theme.AaidaPsycholog"
+        android:usesCleartextTraffic="true">
 
         <activity
             android:name=".ui.splashscreen.SplashScreenActivity"
@@ -22,9 +23,11 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".ui.detail.DetailCaseActivity" />
+        <activity android:name=".ui.detail.DetailCaseActivity"
+            android:theme="@style/MenuTheme"/>
 
-        <activity android:name=".ui.home.HomeActivity"/>
+        <activity android:name=".ui.home.HomeActivity"
+            android:theme="@style/MenuTheme"/>
 
         <meta-data
             android:name="preloaded_fonts"

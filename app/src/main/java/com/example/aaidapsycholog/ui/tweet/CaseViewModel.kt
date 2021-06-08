@@ -7,29 +7,55 @@ import com.example.aaidapsycholog.Resource
 import com.example.aaidapsycholog.data.response.TwitterUserResponse
 import com.example.aaidapsycholog.data.response.UserCaseResponseItem
 import com.example.aaidapsycholog.repo.MainRepository
-import com.example.aaidapsycholog.repo.Repository
+
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import java.lang.reflect.Array
 import javax.inject.Inject
 
 @HiltViewModel
 class CaseViewModel @Inject constructor(private val repository: MainRepository) : ViewModel() {
 
-    private val listUserTweets = MutableLiveData<ArrayList<TwitterUserResponse>>()
+    private val listUserTweets = MutableLiveData<ArrayList<UserCaseResponseItem>>()
 
-    fun getListTwitterUser(): MutableLiveData<ArrayList<TwitterUserResponse>>{
+    fun getListTwitterUser(): MutableLiveData<ArrayList<UserCaseResponseItem>> {
         viewModelScope.launch {
-            val csResponse: ArrayList<TwitterUserResponse> = arrayListOf()
-            when (val response = repository.getCaseUser()){
+            val csResponse: ArrayList<UserCaseResponseItem> = arrayListOf()
+            when (val response = repository.getCaseUser()) {
                 is Resource.Success -> {
-                    response.data?.case?.forEach {
-                        when (val twitterResponse = repository.getUserTwitter(it.twitterUserId)){
-                            is Resource.Success ->{
-                                twitterResponse.data?.let {
-                                    csResponse.add(it)
+                    response.data?.forEach { case ->
+                        when (val twitterResponse = repository.getUserTwitter(case.twitterUserId)) {
+                            is Resource.Success -> {
+                                twitterResponse.data?.let { user ->
+                                    when (val statusResponse = repository.getStatusTwitter(case.tweetId)){
+                                        is Resource.Success -> {
+                                            statusResponse.data?.let { status ->
+                                                csResponse.add(UserCaseResponseItem(
+                                                    case.score,
+                                                    case.twitterUserId,
+                                                    case.tweetId,
+                                                    case.ownerId,
+                                                    case.id,
+                                                    case.createdDate,
+                                                    case.jsonMemberClass,
+                                                    case.isClaimed,
+                                                    case.isClosed,
+                                                    user.followersCount,
+                                                    user.friendsCount,
+                                                    status.text,
+                                                    user.screenName,
+                                                    user.name
+                                                ))
+                                            }
+                                        }
+
+                                        is Resource.Error -> {
+                                            statusResponse.message
+                                        }
+                                    }
                                 }
                             }
-                            is Resource.Error ->{
+                            is Resource.Error -> {
                                 twitterResponse.message
                             }
                         }
@@ -43,4 +69,8 @@ class CaseViewModel @Inject constructor(private val repository: MainRepository) 
         }
         return listUserTweets
     }
+
 }
+
+
+
