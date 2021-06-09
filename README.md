@@ -14,4 +14,7 @@ Here is a demo video for Aaida
 
 ## About Us
 This application is a combination of the Aaida Capstone group team between Machine Learning, Cloud and Mobile Development collaboration.
-This application uses the Kotlin programming language.We hope this application can be useful.
+We hope this application can be useful, Here is a link for Machine learning and Cloud repository
+* [Machine Learning and Cloud](https://github.com/b21-cap0029/bangkit-capstone)
+
+
